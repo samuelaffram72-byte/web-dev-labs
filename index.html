@@ -1,4 +1,4 @@
-<!--Samuel Affram - Lab 3-->
+<!--Samuel Affram - Lab 4-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,16 +7,74 @@
     <link rel="stylesheet" href="styles.css"> 
 </head>
 <body>
-    <h1>Hello, Web! (Web Application Foundations)</h1>
-    <p>This is my first HTML page for this course.</p>
-    <h2>About this Page</h2>
-    <u>
-        <li>Item one</li>
-        <li>Item two</li>
-        <li>Item three</li>
-    </u>
+    <header>
+    <h1>Hello, Web!</h1>
+    <p>A student project for Web development I</p>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Services</a>
+
+    </nav>
+
+    <main>
+      <h1>Hello, Web! (Web Application Foundations)</h1>
+      <p>This is my first HTML page for this course.</p>    
+      <h2>About this Page</h2>
+    <ul>
+        <li>Javascript</li>
+        <li>Advanced HTML</li>
+        <li>Python</li>
+    </ul>
     <a href="https://iit.instructure.com/">Learning Management System for 
         Illinoistech students (Undergraduate and Graduate)</a>
-    <img src="Me.JPG" alt="A graduate stundents in Papademas's class">
+    <img src="Me.JPG" width="90" height="80" alt="A graduate stundents in Papademas's class">
+
+    <table> 
+        <caption>My Course Schedule</caption>
+        <!--<thread>--> 
+            <tr>
+                <th>Week</th>
+                <th>Topic</th>
+                <th>Duration</th>
+            </tr>
+        <!--</thread>-->
+        <tbody>
+            <tr>
+                <td>4</td>
+                <td>Advanced HTML</td>
+                <td>70 Minutes</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <Form>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="msg">Message</label>
+        <textarea id="msg" name="msg"></textarea>
+
+        <label for="referral">How did you find this page?</label>
+        <select id="referral" name="referral">
+            <option value="search">Search engine</option>
+            <option value="Social">Social media</option>
+            <option value="friend">A friend</option>
+            <option value="youtube">Ad on youtube</option>
+        </select>
+
+        <button type="submit">Send</button>
+    </Form>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Samuel Affram</p>
+    </footer>
 </body>
 </html>
