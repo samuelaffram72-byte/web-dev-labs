@@ -1,4 +1,4 @@
-<!--Samuel Affram - Lab 4-->
+<!--Samuel Affram - Lab 5-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +17,6 @@
         <a href="#">About</a>
         <a href="#">Contact</a>
         <a href="#">Services</a>
-
     </nav>
 
     <main>
@@ -62,12 +61,16 @@
         <textarea id="msg" name="msg"></textarea>
 
         <label for="referral">How did you find this page?</label>
+
         <select id="referral" name="referral">
             <option value="search">Search engine</option>
             <option value="Social">Social media</option>
             <option value="friend">A friend</option>
             <option value="youtube">Ad on youtube</option>
         </select>
+
+        <label for="zip">ZIP code</label>
+        <input type="text" id="zip" pattern="^\d{5}$" required> 
 
         <button type="submit">Send</button>
     </Form>
