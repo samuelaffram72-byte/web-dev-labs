@@ -16,6 +16,9 @@ header {
     background-color: #0f9488;
     color: white;
     margin-bottom:  16px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 #main-nav {
@@ -23,13 +26,13 @@ header {
     display: flex;
     gap: 8px;
     justify-content: center;
-    background-color: #0d3b36;
 }
 
 #main-nav a {
     color: white;
     text-decoration: none;
     padding: 12px;
+    transition: background-color 0.2s ease;
 }
 #main-nav a:hover {
     background-color: #14b8a6;
@@ -53,4 +56,46 @@ input, textarea, select {
   max-width: 400px;
   padding: 8px;
   margin-bottom: 12px;
+  box-sizing: border-box;
 }
+
+.image-wrap {
+  position: relative;
+  display: inline-block;
+
+}
+.badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #dc2626;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  z-index: 5;
+}
+
+@media (max-width: 900px) {
+  body {
+    padding: 0 16px;
+  }
+
+  input, textarea, select {
+    max-width: 100%;
+  }
+
+  th, td {
+    padding: 6px;
+  }
+}
+
+@media (max-width: 600px) {
+  #main-nav {
+    flex-direction: column;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+

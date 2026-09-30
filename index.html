@@ -1,18 +1,18 @@
-<!--Samuel Affram - Lab 5-->
+<!--Samuel Affram - Lab 6-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My First Web Page</title>
     <link rel="stylesheet" href="styles.css"> 
 </head>
 <body>
     <header>
-    <h1>Hello, Web!</h1>
     <p>A student project for Web development I</p>
     </header>
 
-    <nav>
+    <nav id="main-nav">
         <a href="#">Home</a>
         <a href="#">About</a>
         <a href="#">Contact</a>
@@ -30,17 +30,19 @@
     </ul>
     <a href="https://iit.instructure.com/">Learning Management System for 
         Illinoistech students (Undergraduate and Graduate)</a>
-    <img src="Me.JPG" width="90" height="80" alt="A graduate stundents in Papademas's class">
+    
+    <div class="image-wrap">
+        <img src="Me.JPG" width="90" height="80" alt="A graduate stundents in Papademas's class">
+        <span class="badge">New</span>
+    </div>    
 
     <table> 
         <caption>My Course Schedule</caption>
-        <!--<thread>--> 
             <tr>
                 <th>Week</th>
                 <th>Topic</th>
                 <th>Duration</th>
             </tr>
-        <!--</thread>-->
         <tbody>
             <tr>
                 <td>4</td>
@@ -70,7 +72,7 @@
         </select>
 
         <label for="zip">ZIP code</label>
-        <input type="text" id="zip" pattern="^\d{5}$" required> 
+        <input name="zip" type="text" id="zip" pattern="^\d{5}$" required> 
 
         <button type="submit">Send</button>
     </Form>
