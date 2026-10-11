@@ -1,8 +1,6 @@
-//const zipPattern = /^\d{5}$/;
-//const isValidZip = zipPattern.test(zipInput.Value);
-//console.log(isValidZip); //true or false//
+//Samuel Affram - Lab 7
 
-const zipInput = document.getElementById("zip"); // match your input's id
+const zipInput = document.getElementById("zip");
 const zipPattern = /^\d{5}$/;
 
 zipInput.addEventListener("input", () => {
