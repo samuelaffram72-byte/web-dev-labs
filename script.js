@@ -1,4 +1,4 @@
-//Samuel Affram - Lab 9
+//Samuel Affram - Lab 10
 
 //console.log("1. Starting");
 
@@ -8,6 +8,10 @@
 //}, 1000);
 
 //console.log("3. This runs immediately");
+
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark");
+}
 
 const zipInput = document.getElementById("zip");
 const zipPattern = /^\d{5}$/;
@@ -19,7 +23,7 @@ zipInput.addEventListener("input", () => {
 
 
 const name = "Samuel Affram";
-let labsCompleted = 8;
+let labsCompleted = 9;
 let isEnabled = false;
 
 labsCompleted = labsCompleted + 1;
@@ -27,12 +31,25 @@ console.log(`${name} has completed ${labsCompleted} labs.`);
 
 const likeBtn = document.querySelector("#like-btn");
 const likeCount = document.querySelector("#like-count");
-let likes = 0;
+//let likes = 0;
 
-function incrementLikes(){
-    likes = likes + 1;
-    updateLikeDisplay();
-}
+//function incrementLikes(){
+//    likes = likes + 1;
+//    updateLikeDisplay();
+//}
+const LikeCounter = {
+  likes: Number(localStorage.getItem("likes")) || 0,
+  increment() {
+    this.likes = this.likes + 1;
+    localStorage.setItem("likes", this.likes);
+    this.render();
+  },
+  render() {
+    likeCount.textContent = `${this.likes} likes`;
+  }
+};
+
+LikeCounter.render();  // show the saved count immediately on load
 
 const likeMessage = document.querySelector("#like-message");
 
@@ -51,7 +68,7 @@ function updateLikeDisplay(count) {
 
 if (likeBtn) {
     likeBtn.addEventListener("click", function() {
-        counter.increment();
+        LikeCounter.increment();
     });
 } else {
     console.warn("like-btn not found on this page");
@@ -59,9 +76,15 @@ if (likeBtn) {
 
 const themeBtn = document.querySelector("#theme-btn");
 
-themeBtn.addEventListener("click", function(){
-    document.body.classList.toggle("dark");
+themeBtn.addEventListener("click", function() {
+  document.body.classList.toggle("dark");
+  const isDark = document.body.classList.contains("dark");
+  localStorage.setItem("theme", isDark ? "dark" : "light");
 });
+
+//themeBtn.addEventListener("click", function(){
+//    document.body.classList.toggle("dark");
+//});
 
 const goals = ["HTML", "CSS", "JavaScript", "Git"];
 const goalsList = document.querySelector("#goals-list");
@@ -72,19 +95,19 @@ goals.forEach(function(goal) {
     goalsList.appendChild(item);
 });
 
-function createLikeCounter() {
-    let likes = 0; //private, in other words not public
+//function createLikeCounter() {
+//    let likes = 0; //private, in other words not public
 
-    return {
-        increment() {
-            likes++;
-            updateLikeDisplay(likes);
-        },
-        getLikes() { return likes; }
-    }; 
-}
+//    return {
+//        increment() {
+//            likes++;
+//            updateLikeDisplay(likes);
+//        },
+//        getLikes() { return likes; }
+//    }; 
+//}
 
-const counter = createLikeCounter();
+//const counter = createLikeCounter();
 
 function getGreetingAfterDelay() {
     return new Promise(function(resolve) {
@@ -124,3 +147,24 @@ async function loadFact() {
 }
 
 factBtn.addEventListener("click", loadFact);
+
+const locationBtn = document.querySelector("#location-btn");
+const locationDisplay = document.querySelector("#location-display");
+
+locationBtn.addEventListener("click", function() {
+  if (!("geolocation" in navigator)) {
+    locationDisplay.textContent =
+      "Geolocation isn't supported.";
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(function(position) {
+    const lat = position.coords.latitude.toFixed(2);
+    const lon = position.coords.longitude.toFixed(2);
+    locationDisplay.textContent = `You're near ${lat}, ${lon}`;
+  }, function(error) {
+    locationDisplay.textContent =
+      "Location access was denied.";
+    console.warn(error);
+  });
+});
