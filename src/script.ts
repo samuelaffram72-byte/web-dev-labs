@@ -1,4 +1,4 @@
-//Samuel Affram - Lab 10
+//Samuel Affram - Lab 11
 
 //console.log("1. Starting");
 
@@ -13,7 +13,7 @@ if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark");
 }
 
-const zipInput = document.getElementById("zip");
+const zipInput = document.getElementById("zip") as HTMLInputElement;
 const zipPattern = /^\d{5}$/;
 
 zipInput.addEventListener("input", () => {
@@ -22,15 +22,15 @@ zipInput.addEventListener("input", () => {
 });
 
 
-const name = "Samuel Affram";
-let labsCompleted = 9;
+const myName = "Samuel Affram";
+let labsCompleted = 10;
 let isEnabled = false;
 
 labsCompleted = labsCompleted + 1;
-console.log(`${name} has completed ${labsCompleted} labs.`);
+console.log(`${myName} has completed ${labsCompleted} labs.`);
 
-const likeBtn = document.querySelector("#like-btn");
-const likeCount = document.querySelector("#like-count");
+const likeBtn = document.querySelector("#like-btn") as HTMLElement;
+const likeCount = document.querySelector("#like-count") as HTMLElement;
 //let likes = 0;
 
 //function incrementLikes(){
@@ -39,21 +39,21 @@ const likeCount = document.querySelector("#like-count");
 //}
 const LikeCounter = {
   likes: Number(localStorage.getItem("likes")) || 0,
-  increment() {
+  increment(): void {
     this.likes = this.likes + 1;
-    localStorage.setItem("likes", this.likes);
+    localStorage.setItem("likes", this.likes.toString());
     this.render();
   },
-  render() {
+  render(): void {
     likeCount.textContent = `${this.likes} likes`;
   }
 };
 
 LikeCounter.render();  // show the saved count immediately on load
 
-const likeMessage = document.querySelector("#like-message");
+const likeMessage = document.querySelector("#like-message") as HTMLElement;
 
-function updateLikeDisplay(count) {
+function updateLikeDisplay(count: number) {
     likeCount.textContent = `${count} likes`;
 
     if (count >= 10) {
@@ -74,7 +74,7 @@ if (likeBtn) {
     console.warn("like-btn not found on this page");
 }
 
-const themeBtn = document.querySelector("#theme-btn");
+const themeBtn = document.querySelector("#theme-btn") as HTMLElement;
 
 themeBtn.addEventListener("click", function() {
   document.body.classList.toggle("dark");
@@ -86,10 +86,10 @@ themeBtn.addEventListener("click", function() {
 //    document.body.classList.toggle("dark");
 //});
 
-const goals = ["HTML", "CSS", "JavaScript", "Git"];
-const goalsList = document.querySelector("#goals-list");
+const goals: string[] = ["HTML", "CSS", "JavaScript", "Git"];
+const goalsList = document.querySelector("#goals-list") as HTMLElement;
 
-goals.forEach(function(goal) {
+goals.forEach(function(goal: string) {
     const item = document.createElement("li");
     item.textContent = goal;
     goalsList.appendChild(item);
@@ -127,8 +127,13 @@ async function showGreeting() {
 
 showGreeting();
 
-const factBtn = document.querySelector("#fact-btn");
-const factDisplay = document.querySelector("#fact-display");
+const factBtn = document.querySelector("#fact-btn") as HTMLElement;
+const factDisplay = document.querySelector("#fact-display") as HTMLElement;
+
+interface CatFact {
+  fact: string;
+  length: number;
+}
 
 async function loadFact() {
     factDisplay.textContent = "Loading...";
@@ -137,7 +142,7 @@ async function loadFact() {
         if(!response.ok){
             throw new Error("Server responded with an error");
         }
-        const data = await response.json();
+        const data = (await response.json()) as CatFact;
         factDisplay.textContent = data.fact;
     } catch(error){
         factDisplay.textContent = "Couldn't load a fact right now. Try again";
@@ -146,10 +151,11 @@ async function loadFact() {
 
 }
 
+
 factBtn.addEventListener("click", loadFact);
 
-const locationBtn = document.querySelector("#location-btn");
-const locationDisplay = document.querySelector("#location-display");
+const locationBtn = document.querySelector("#location-btn") as HTMLElement;
+const locationDisplay = document.querySelector("#location-display") as HTMLElement;
 
 locationBtn.addEventListener("click", function() {
   if (!("geolocation" in navigator)) {
@@ -168,3 +174,4 @@ locationBtn.addEventListener("click", function() {
     console.warn(error);
   });
 });
+
